@@ -15,7 +15,7 @@ function getRandomColor() {
 function App() {
   const [colors, setColors] = useState<string[]>([])
   const [correctColor, setCorrectColor] = useState<string>()
-  const [answer, setAnswer] = useState<boolean>()
+  const [answer, setAnswer] = useState<boolean | null>(null)
 
   const refreshColor = () => {
     const randColors: string[] = [
@@ -42,7 +42,6 @@ function App() {
 
   return (
     <div
-      className="App"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -60,17 +59,16 @@ function App() {
         ></div>
       </div>
       <div className="flex-box">
-        {colors &&
-          colors.map(color => (
-            <button
-              onClick={buttonClicked}
-              style={{ padding: "10px", cursor: "pointer", width: "6rem" }}
-              key={color}
-              id={color}
-            >
-              {color}
-            </button>
-          ))}
+        {colors.map(color => (
+          <button
+            key={color}
+            id={color}
+            onClick={buttonClicked}
+            style={{ padding: "10px", cursor: "pointer", width: "6rem" }}
+          >
+            {color}
+          </button>
+        ))}
       </div>
       <div className="flex-box">
         {answer === true && <h2 style={{ color: "green" }}>Correct!</h2>}
