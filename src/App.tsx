@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useState } from "react"
 import "./App.css"
 
 function getRandomColor() {
-  const chars: string = "0123456789ABCDEF"
+  const chars: string = "0123456789abcdef"
   let color: string = "#"
 
   for (let i = 0; i < 6; i++) {
@@ -23,9 +23,8 @@ function App() {
       getRandomColor(),
       getRandomColor(),
     ]
-    const correct: string = randColors[Math.floor(Math.random() * 3)]
     setColors(randColors)
-    setCorrectColor(correct)
+    setCorrectColor(randColors[Math.floor(Math.random() * 3)])
   }
 
   useEffect(() => {
@@ -34,37 +33,49 @@ function App() {
 
   const buttonClicked = (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.target as HTMLButtonElement
+
     if (button.id === correctColor) {
       setAnswer(true)
       refreshColor()
-    } else {
-      setAnswer(false)
-    }
+    } else setAnswer(false)
   }
 
   return (
-    <div className="App" style={{ display: "d-flex" }}>
-      <div
-        style={{
-          backgroundColor: correctColor,
-          margin: "20vh auto 2rem auto",
-          width: "20rem",
-          height: "20rem",
-        }}
-      ></div>
-      {colors &&
-        colors.map(color => (
-          <button
-            onClick={buttonClicked}
-            style={{ marginRight: "1rem", padding: 10, cursor: "pointer" }}
-            key={color}
-            id={color}
-          >
-            {color}
-          </button>
-        ))}
-      {answer === true && <h2 style={{ color: "green" }}>Correct!</h2>}
-      {answer === false && <h2 style={{ color: "red" }}>Wrong!</h2>}
+    <div
+      className="App"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div className="flex-box">
+        <div
+          style={{
+            backgroundColor: correctColor,
+            marginTop: "10vh",
+            marginBottom: "2rem",
+            width: "20rem",
+            height: "20rem",
+          }}
+        ></div>
+      </div>
+      <div className="flex-box">
+        {colors &&
+          colors.map(color => (
+            <button
+              onClick={buttonClicked}
+              style={{ padding: "10px", cursor: "pointer", width: "6rem" }}
+              key={color}
+              id={color}
+            >
+              {color}
+            </button>
+          ))}
+      </div>
+      <div className="flex-box">
+        {answer === true && <h2 style={{ color: "green" }}>Correct!</h2>}
+        {answer === false && <h2 style={{ color: "red" }}>Wrong!</h2>}
+      </div>
     </div>
   )
 }

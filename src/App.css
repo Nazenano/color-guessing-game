@@ -4,4 +4,13 @@
   padding: 2rem;
   text-align: center;
   font-family: sans-serif;
+  user-select: none;
+}
+
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  gap: 1rem;
 }
