@@ -54,7 +54,7 @@ function App() {
             marginTop: "10vh",
             marginBottom: "2rem",
             width: "20rem",
-            height: "20rem",
+            height: "45vw",
           }}
         ></div>
       </div>
